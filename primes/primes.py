@@ -135,5 +135,6 @@ class primes(object, metaclass=_meta):
         """Number of prime entries already computed and stored."""
         return len(self.entries)
 
+
 if __name__ == "__main__": 
     doctest.testmod()
