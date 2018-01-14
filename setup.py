@@ -2,6 +2,7 @@ from setuptools import setup
 
 setup(
     name             = 'primes',
+    version          = '0.1.0.0',
     packages         = ['primes',],
     install_requires = ['isqrt',],
     license          = 'MIT',
