@@ -1,5 +1,5 @@
-"""primes
-https://github.com/lapets/primes
+"""primelist
+https://github.com/lapets/primelist
 
 Python library encapsulating the set of all primes as a
 an indexed collection (optimized for small primes).
@@ -69,21 +69,21 @@ class _meta(type):
     """
     Metaclass to provide static methods.
 
-    >>> 17 in primes
+    >>> 17 in primelist
     True
-    >>> 14 in primes
+    >>> 14 in primelist
     False
-    >>> 1000000000000000000000000000 in primes
+    >>> 1000000000000000000000000000 in primelist
     False
-    >>> 1000003 in primes
+    >>> 1000003 in primelist
     True
-    >>> 1000004 in primes
+    >>> 1000004 in primelist
     False
-    >>> primes[0]
+    >>> primelist[0]
     2
-    >>> primes[79905]
+    >>> primelist[79905]
     1019173
-    >>> primes[1:6]
+    >>> primelist[1:6]
     [3, 5, 7, 11, 13]
     """
     def __getitem__(self, key):
@@ -96,11 +96,11 @@ class _meta(type):
         raise ArithmeticError("There are infinitely many primes.")
 
 
-class primes(object, metaclass=_meta):
+class primelist(object, metaclass=_meta):
     """
     Class encapsulating the sequence of all primes.
 
-    >>> ps = primes()
+    >>> ps = primelist()
     >>> 17 in ps
     True
     >>> 14 in ps
