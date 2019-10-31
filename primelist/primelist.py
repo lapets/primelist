@@ -1,9 +1,7 @@
-"""primelist
-https://github.com/lapets/primelist
+"""List of all primes.
 
 Python library encapsulating the set of all primes as a
 an indexed collection (optimized for small primes).
-
 """
 
 import doctest
@@ -12,7 +10,7 @@ from isqrt import isqrt
 def _load():
     """Read prime entries from file system into list."""
     ps = []
-    for digits in range(1,7):
+    for digits in range(1, 7):
         ps.extend(map(int, open("data/"+str(digits)).read().split("\n")))
     return ps
 
@@ -46,7 +44,7 @@ def _getitem(ps, key):
         if key.step is not None and key.step != 1:
             raise ValueError("Only an increment of 1 is supported.")
         index_bound = max(key.start, key.stop)
-    elif type(key) is int:
+    elif isinstance(key, int):
         if key < 0:
             raise ValueError("Supplied index is negative.")
         index_bound = key
@@ -86,17 +84,18 @@ class _meta(type):
     >>> primelist[1:6]
     [3, 5, 7, 11, 13]
     """
-    def __getitem__(self, key):
+
+    def __getitem__(cls, key):
         return _getitem(_load(), key)
 
-    def __contains__(self, n):
+    def __contains__(cls, n):
         return _contains(_load(), n)
 
-    def __len__(self):
+    def __len__(cls):
         raise ArithmeticError("There are infinitely many primes.")
 
 
-class primelist(object, metaclass=_meta):
+class primelist(metaclass=_meta):
     """
     Class encapsulating the sequence of all primes.
 
@@ -122,6 +121,7 @@ class primelist(object, metaclass=_meta):
     >>> len(ps) >= l
     True
     """
+
     def __init__(self):
         self.entries = _load()
 
@@ -136,5 +136,5 @@ class primelist(object, metaclass=_meta):
         return len(self.entries)
 
 
-if __name__ == "__main__": 
+if __name__ == "__main__":
     doctest.testmod()
